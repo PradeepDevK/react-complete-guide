@@ -9,7 +9,7 @@ const app = props => {
       { name: 'Raj', age: 29 },
       { name: 'Raji', age: 27 },
       { name: 'Raju', age: 28 }
-    ]    
+    ]
   });
 
   const [otherState, setOtherState] = useState('some other value');
@@ -51,6 +51,25 @@ const app = props => {
     });
   }
 
+  let persons = null;
+
+  if (showPersonState.showPersons) {
+    persons = (
+      <div >
+        <Person
+          name={personsState.person[0].name}
+          age={personsState.person[0].age} />
+        <Person
+          name={personsState.person[1].name}
+          age={personsState.person[1].age} click={switchNameHandler.bind(this, "PradeepRaj")}
+          changed={nameChangedHandler}>My Hobbies : Racing </Person>
+        <Person
+          name={personsState.person[2].name}
+          age={personsState.person[2].age} />
+      </div>
+    );
+  } 
+  
   const style = {
     backgroudColor: 'white',
     font: 'inherit',
@@ -70,20 +89,21 @@ const app = props => {
       <button
         style={style}
         onClick={() => togglePersonsHandler()}>Toggle Persons</button>
-      {showPersonState.showPersons ?
-        <div >
-          <Person
-            name={personsState.person[0].name}
-            age={personsState.person[0].age} />
-          <Person
-            name={personsState.person[1].name}
-            age={personsState.person[1].age} click={switchNameHandler.bind(this, "PradeepRaj")}
-            changed={nameChangedHandler}>My Hobbies : Racing </Person>
-          <Person
-            name={personsState.person[2].name}
-            age={personsState.person[2].age} />
-        </div> : null
-      }
+
+      {/* <div >
+        <Person
+          name={personsState.person[0].name}
+          age={personsState.person[0].age} />
+        <Person
+          name={personsState.person[1].name}
+          age={personsState.person[1].age} click={switchNameHandler.bind(this, "PradeepRaj")}
+          changed={nameChangedHandler}>My Hobbies : Racing </Person>
+        <Person
+          name={personsState.person[2].name}
+          age={personsState.person[2].age} />
+      </div> */}
+
+      {persons}
     </div>
   );
 
